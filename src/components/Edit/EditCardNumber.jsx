@@ -1,10 +1,16 @@
 export default function EditCardNumber({creditCard, setCreditCard}){
 
     function handleNumberChange(e){
-        setCreditCard({
-            ...creditCard,
-            number: e.target.value
-        })
+        const inputValue = e.target.value;
+        const regex = /^\d{0,16}$/;
+
+        if (regex.test(inputValue)) {
+            setCreditCard({
+                ...creditCard,
+                number: inputValue
+            })
+          }
+        
     }
     
 
@@ -15,10 +21,8 @@ export default function EditCardNumber({creditCard, setCreditCard}){
                 <input
                     value ={creditCard.number}
                     onChange={handleNumberChange} 
-                    maxLength={16}
-                    
-                    
-                    
+                    placeholder='e.g.123456789123'
+                    type="text"
                 />
             </label> 
         </>
