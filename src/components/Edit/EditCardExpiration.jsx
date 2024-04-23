@@ -1,47 +1,52 @@
 export default function EditCardExpiration({creditCard, setCreditCard}){
-    
+
+    const numOnlyRegex = /^\d{0,2}$/;
+
     function handleMonthChange(e) {
-        setCreditCard({
-          ...creditCard,
-          expirationDate: {
-            ...creditCard.expirationDate,
-            month: e.target.value
-          }
-        });
+        const inputValue = e.target.value;
+
+        if (numOnlyRegex.test(inputValue)){
+            setCreditCard({
+                ...creditCard,
+                expirationDate: {
+                  ...creditCard.expirationDate,
+                  month: inputValue
+                }
+            });
+        }
     }
 
     function handleYearChange(e) {
-        setCreditCard({
-          ...creditCard,
-          expirationDate: {
-            ...creditCard.expirationDate,
-            year: e.target.value
-          }
-        });
+        const inputValue = e.target.value;
+
+        if (numOnlyRegex.test(inputValue)){
+            setCreditCard({
+                ...creditCard,
+                expirationDate: {
+                  ...creditCard.expirationDate,
+                  year: inputValue
+                }
+            });
+        }
     }
 
     return(
         <>
             <label >
-                Expire month:
+                EXP. DATE(MM/YY)
                 <input
                     value ={creditCard.expirationDate.month}
                     onChange={handleMonthChange} 
-                    maxLength={2}
-                    minLength={2}
+                    placeholder='MM'
                 />
-            </label> 
 
-            <label >
-                Expire Year:
                 <input
                     value ={creditCard.expirationDate.year}
                     onChange={handleYearChange} 
-                    maxLength={2}
-                    minLength={2}
-                    
+                    placeholder='YY'
                 />
             </label> 
+
         </>
     )
 }

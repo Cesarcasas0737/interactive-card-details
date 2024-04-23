@@ -1,20 +1,25 @@
 export default function EditCardCvv({creditCard, setCreditCard}){
 
     function handleCvvChange(e){
-        setCreditCard({
+        const inputValue = e.target.value;
+        const numOnlyregex = /^\d{0,4}$/;
+
+        if (numOnlyregex.test(inputValue)){
+            setCreditCard({
             ...creditCard,
-            cvv: e.target.value
-        })
+            cvv: inputValue
+            })
+        }
     }
     
     return(
         <>
            <label >
-                Credit Card Cvv:
+                cvc
                 <input
                     value ={creditCard.cvv}
-                    onChange={handleCvvChange} 
-                    maxLength={4} 
+                    onChange={handleCvvChange}
+                    placeholder='e.g. 123'
                 />
             </label> 
         </>

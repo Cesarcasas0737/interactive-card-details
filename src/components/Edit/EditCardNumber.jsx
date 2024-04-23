@@ -4,13 +4,12 @@ export default function EditCardNumber({creditCard, setCreditCard}){
         const inputValue = e.target.value;
         const regex = /^\d{0,16}$/;
 
-        if (regex.test(inputValue)) {
+        if (regex.test(inputValue)){
             setCreditCard({
                 ...creditCard,
                 number: inputValue
             })
-          }
-        
+        } 
     }
     
 
